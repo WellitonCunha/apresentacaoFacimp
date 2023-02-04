@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\v1\ContasWhatsappController;
 use App\Http\Controllers\Api\v1\SendEmailController;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Repository\Mail\MailRepository;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,12 @@ Route::prefix('category')->group(function(){
     Route::put('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 });
+
+Route::prefix('contact')->group(function(){
+    Route::get('/index', [ContactController::class, 'index'])->name('contact.index');
+    Route::get('/show/{id}', [ContactController::class, 'show'])->name('contact.show');
+    Route::post('/store', [ContactController::class, 'store'])->name('contact.store');
+    Route::put('/update/{id}', [ContactController::class, 'update'])->name('contact.update');
+    Route::delete('/destroy/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
+});
+

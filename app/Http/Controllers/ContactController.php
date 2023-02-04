@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -14,7 +15,11 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            return Contact::with('category')->paginate();
+        }catch (\Throwable $th){
+            throw $th;
+        }
     }
 
     /**
@@ -25,7 +30,11 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            return Contact::create($request->all());
+        }catch(\Throwable $th){
+            throw $th;
+        }
     }
 
     /**
@@ -36,7 +45,11 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            return Contact::with('category')->find($id);
+        }catch(\Throwable $th){
+            throw $th;
+        }
     }
 
     /**
@@ -48,7 +61,12 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $contract = $this->show($id);
+            return $contract->update($request->all());
+        }catch(\Throwable $th){
+            throw $th;
+        }
     }
 
     /**
@@ -59,6 +77,11 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $contract = $this->show($id);
+            return $contract->delete();
+        }catch(\Throwable $th){
+            throw $th;
+        }
     }
 }

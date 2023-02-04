@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use phpDocumentor\Reflection\Types\This;
 
-class Contract extends Model
+class Contact extends Model
 {
     use HasFactory;
-    protected $table = 'contracts';
+    protected $table = 'contacts';
     protected $fillable = [
         'name',
         'email',
