@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\v1\ContasWhatsappController;
 use App\Http\Controllers\Api\v1\SendEmailController;
 use App\Http\Controllers\Api\v1\UserController;
+use App\Http\Controllers\CategoryController;
 use App\Repository\Mail\MailRepository;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('/login', [AuthController::class, 'login'])->name('api.login');
+Route::prefix('category')->group(function(){
+    Route::get('/index', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/show/{id}', [CategoryController::class, 'show'])->name('category.show');
+    Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::put('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+});
